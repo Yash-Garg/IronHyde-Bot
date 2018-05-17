@@ -150,11 +150,13 @@ GMAPS_TIME = "https://maps.googleapis.com/maps/api/timezone/json"
 
 @run_async
 def runs(bot: Bot, update: Update):
+    bot.sendChatAction(update.effective_chat.id, "typing") # Bot typing before send messages
     update.effective_message.reply_text(random.choice(RUN_STRINGS))
 
 
 @run_async
 def slap(bot: Bot, update: Update, args: List[str]):
+    bot.sendChatAction(update.effective_chat.id, "typing") # Bot typing before send messages
     msg = update.effective_message  # type: Optional[Message]
 
     # reply to correct message
@@ -202,6 +204,7 @@ def get_bot_ip(bot: Bot, update: Update):
 
 @run_async
 def get_id(bot: Bot, update: Update, args: List[str]):
+    bot.sendChatAction(update.effective_chat.id, "typing") # Bot typing before send messages
     user_id = extract_user(update.effective_message, args)
     if user_id:
         if update.effective_message.reply_to_message and update.effective_message.reply_to_message.forward_from:
@@ -231,6 +234,7 @@ def get_id(bot: Bot, update: Update, args: List[str]):
 
 @run_async
 def info(bot: Bot, update: Update, args: List[str]):
+    bot.sendChatAction(update.effective_chat.id, "typing") # Bot typing before send messages
     msg = update.effective_message  # type: Optional[Message]
     user_id = extract_user(update.effective_message, args)
 
@@ -297,6 +301,7 @@ def get_time(bot: Bot, update: Update, args: List[str]):
     if res.status_code == 200:
         loc = json.loads(res.text)
         if loc.get('status') == 'OK':
+            bot.sendChatAction(update.effective_chat.id, "typing") # Bot typing before send messages
             lat = loc['results'][0]['geometry']['location']['lat']
             long = loc['results'][0]['geometry']['location']['lng']
 

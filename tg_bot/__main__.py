@@ -120,6 +120,7 @@ def test(bot: Bot, update: Update):
 
 @run_async
 def start(bot: Bot, update: Update, args: List[str]):
+    bot.sendChatAction(update.effective_chat.id, "typing") # Bot typing before send messages
     if update.effective_chat.type == "private":
         if len(args) >= 1:
             if args[0].lower() == "help":
