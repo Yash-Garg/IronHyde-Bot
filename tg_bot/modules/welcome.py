@@ -1,4 +1,4 @@
-import html
+import html, time
 from typing import Optional, List
 
 from telegram import Message, Chat, Update, Bot, User
@@ -8,8 +8,9 @@ from telegram.ext import MessageHandler, Filters, CommandHandler, run_async
 from telegram.utils.helpers import mention_markdown, mention_html, escape_markdown
 
 import tg_bot.modules.sql.welcome_sql as sql
+from tg_bot.modules.sql.safemode_sql import is_safemoded
 from tg_bot import dispatcher, OWNER_ID, LOGGER
-from tg_bot.modules.helper_funcs.chat_status import user_admin
+from tg_bot.modules.helper_funcs.chat_status import user_admin, is_user_ban_protected
 from tg_bot.modules.helper_funcs.misc import build_keyboard, revert_buttons
 from tg_bot.modules.helper_funcs.msg_types import get_welcome_type
 from tg_bot.modules.helper_funcs.string_handling import markdown_parser, \
@@ -79,7 +80,6 @@ def send(update, message, keyboard, backup_message):
 @run_async
 def new_member(bot: Bot, update: Update):
     chat = update.effective_chat  # type: Optional[Chat]
-    chat_id = update.effective_chat.id
     new_members = update.effective_message.new_chat_members
 
     for mems in new_members:
@@ -95,7 +95,6 @@ def new_member(bot: Bot, update: Update):
     should_welc, cust_welcome, welc_type = sql.get_welc_pref(chat.id)
     if should_welc:
         sent = None
-        new_members = update.effective_message.new_chat_members
         for new_mem in new_members:
             # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
