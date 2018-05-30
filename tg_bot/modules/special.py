@@ -27,32 +27,6 @@ MESSAGES = (
     "Oof, you were born today ",
 )
 
-@run_async
-def quickscope(bot: Bot, update: Update, args: List[int]):
-    if args:
-        chat_id = str(args[1])
-        to_kick = str(args[0])
-    else:
-        update.effective_message.reply_text("You don't seem to be referring to a chat/user")
-    try:
-        bot.kick_chat_member(chat_id, to_kick)
-        update.effective_message.reply_text("Attempted banning " + to_kick + " from" + chat_id)
-    except BadRequest as excp:
-        update.effective_message.reply_text(excp.message + " " + to_kick)
-
-
-@run_async
-def quickunban(bot: Bot, update: Update, args: List[int]):
-    if args:
-        chat_id = str(args[1])
-        to_kick = str(args[0])
-    else:
-        update.effective_message.reply_text("You don't seem to be referring to a chat/user")
-    try:
-        bot.unban_chat_member(chat_id, to_kick)
-        update.effective_message.reply_text("Attempted unbanning " + to_kick + " from" + chat_id)
-    except BadRequest as excp:
-        update.effective_message.reply_text(excp.message + " " + to_kick)
 
 
 @run_async
@@ -155,15 +129,11 @@ __help__ = """
 __mod_name__ = "Special"
 
 SNIPE_HANDLER = CommandHandler("snipe", snipe, pass_args=True, filters=CustomFilters.sudo_filter)
-QUICKSCOPE_HANDLER = CommandHandler("quickscope", quickscope, pass_args=True, filters=CustomFilters.sudo_filter)
-QUICKUNBAN_HANDLER = CommandHandler("quickunban", quickunban, pass_args=True, filters=CustomFilters.sudo_filter)
 GETLINK_HANDLER = CommandHandler("getlink", getlink, pass_args=True, filters=Filters.user(OWNER_ID))
 SLIST_HANDLER = CommandHandler("slist", slist, filters=CustomFilters.sudo_filter)
 BIRTHDAY_HANDLER = DisableAbleCommandHandler("birthday", birthday, pass_args=True, filters=Filters.group)
 
 dispatcher.add_handler(SNIPE_HANDLER)
-dispatcher.add_handler(QUICKSCOPE_HANDLER)
-dispatcher.add_handler(QUICKUNBAN_HANDLER)
 dispatcher.add_handler(GETLINK_HANDLER)
 dispatcher.add_handler(SLIST_HANDLER)
 dispatcher.add_handler(BIRTHDAY_HANDLER)
