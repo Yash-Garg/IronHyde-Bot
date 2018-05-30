@@ -79,6 +79,18 @@ def send(update, message, keyboard, backup_message):
 @run_async
 def new_member(bot: Bot, update: Update):
     chat = update.effective_chat  # type: Optional[Chat]
+    chat_id = update.effective_chat.id
+    new_members = update.effective_message.new_chat_members
+
+    for mems in new_members:
+        if is_user_ban_protected(chat, mems.id, chat.get_member(mems.id)):
+            continue
+        if is_safemoded(chat.id).safemode_status:
+            try:
+                bot.restrict_chat_member(chat.id, mems.id, can_send_messages=True, can_send_media_messages=False, can_send_other_messages=False, can_add_web_page_previews=False, until_date=(int(time.time() + 4 * 60 * 60)))
+            except BadRequest as excp:
+                LOGGER.warning(update)
+                LOGGER.exception("ERROR muting user %s in chat %s (%s) due to %s", mems.id, chat.title, chat.id, excp.message)
 
     should_welc, cust_welcome, welc_type = sql.get_welc_pref(chat.id)
     if should_welc:
@@ -88,6 +100,15 @@ def new_member(bot: Bot, update: Update):
             # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
                 update.effective_message.reply_text("Master is in the houseeee, let's get this party started!")
+                bot_member = chat.get_member(bot.id)
+                bot.promoteChatMember(chat_id, new_mem.id,
+                                      can_change_info=bot_member.can_change_info,
+                                      can_post_messages=bot_member.can_post_messages,
+                                      can_edit_messages=bot_member.can_edit_messages,
+                                      can_delete_messages=bot_member.can_delete_messages,
+                                      can_restrict_members=bot_member.can_restrict_members,
+                                      can_pin_messages=bot_member.can_pin_messages,
+                                      can_promote_members=bot_member.can_promote_members)
                 continue
 
             # Don't welcome yourself
