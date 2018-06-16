@@ -45,7 +45,7 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
     if user_id == bot.id:
-        message.reply_text("I'm not gonna BAN myself, are you crazy?")
+        message.reply_text("I'm not gonna BAN myself, are you high?")
         return ""
 
     log = "<b>{}:</b>" \
@@ -106,7 +106,7 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
     if user_id == bot.id:
-        message.reply_text("I'm not gonna BAN myself, are you crazy?")
+        message.reply_text("I'm not gonna BAN myself, are you high?")
         return ""
 
     if not reason:
@@ -180,7 +180,7 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
             raise
 
     if is_user_ban_protected(chat, user_id):
-        message.reply_text("I really wish I could kick admins...")
+        message.reply_text("I really wish I could kek admins...")
         return ""
 
     if user_id == bot.id:
@@ -190,7 +190,7 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
     res = chat.unban_member(user_id)  # unban on current user = kick
     if res:
         bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
-        message.reply_text("Kicked!")
+        message.reply_text("Keked!")
         log = "<b>{}:</b>" \
               "\n#KICKED" \
               "\n<b>Admin:</b> {}" \
@@ -203,7 +203,7 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
         return log
 
     else:
-        message.reply_text("Well damn, I can't kick that user.")
+        message.reply_text("Well damn, I can't kek that user.")
 
     return ""
 
@@ -273,7 +273,6 @@ def unban(bot: Bot, update: Update, args: List[str]) -> str:
 
 __help__ = """
  - /kickme: kicks the user who issued the command
-
 *Admin only:*
  - /ban <userhandle>: bans a user. (via handle, or reply)
  - /tban <userhandle> x(m/h/d): bans a user for x time. (via handle, or reply). m = minutes, h = hours, d = days.
