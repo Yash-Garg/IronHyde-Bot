@@ -47,6 +47,9 @@ the things I can help you with.
 And the following:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
+DONATE_STRING = """Heya, glad to hear you want to donate!
+Go to this link for donating him; [PayPal](paypal.me/YGarg917), """
+
 IMPORTED = {}
 MIGRATEABLE = []
 HELPABLE = {}
