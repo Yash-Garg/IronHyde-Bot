@@ -66,6 +66,15 @@ RUN_STRINGS = (
     "Han shot first. So will I.",
     "What are you running after, a white rabbit?",
     "As The Doctor would say... RUN!",
+    "Run Barry run",
+    "Don't you want VoLTE ?",
+    "Oh! Someone wants to be The Flash",
+    "Nani the F***!",
+    "You run, you lose.",
+    "Go watch POGO!",
+    "Pew Pew Pew...",
+    "You think speed is your ally? I was born on treadmill.",
+    "A shinigami is coming after you.",
 )
 
 SLAP_TEMPLATES = (
@@ -80,6 +89,12 @@ SLAP_TEMPLATES = (
     "{user1} grabs up a {item} and {hits} {user2} with it.",
     "{user1} ties {user2} to a chair and {throws} a {item} at them.",
     "{user1} gave a friendly push to help {user2} learn to swim in lava."
+    "{user1} says HAKAI,{user2} gets destroyed. No one can escape from power of the god of destruction.",
+    "{user1} blasts {user2} with a spirit bomb.",
+    "{user1} throws a Kamehameha wave at {user2}.",
+    "{user1} cuts {user2} into pieces using Destructo Discs.",
+    "{user1} snaps his fingers causing {user2} to disintegrate from the universe.",
+    "{user1} craves {user2} in the Death Note.",
 )
 
 ITEMS = (
@@ -325,24 +340,20 @@ def echo(bot: Bot, update: Update):
 MARKDOWN_HELP = """
 Markdown is a very powerful formatting tool supported by telegram. {} has some enhancements, to make sure that \
 saved messages are correctly parsed, and to allow you to create buttons.
-
 - <code>_italic_</code>: wrapping text with '_' will produce italic text
 - <code>*bold*</code>: wrapping text with '*' will produce bold text
 - <code>`code`</code>: wrapping text with '`' will produce monospaced text, also known as 'code'
 - <code>[sometext](someURL)</code>: this will create a link - the message will just show <code>sometext</code>, \
 and tapping on it will open the page at <code>someURL</code>.
 EG: <code>[test](example.com)</code>
-
 - <code>[buttontext](buttonurl:someURL)</code>: this is a special enhancement to allow users to have telegram \
 buttons in their markdown. <code>buttontext</code> will be what is displayed on the button, and <code>someurl</code> \
 will be the url which is opened.
 EG: <code>[This is a button](buttonurl:example.com)</code>
-
 If you want multiple buttons on the same line, use :same, as such:
 <code>[one](buttonurl://example.com)
 [two](buttonurl://google.com:same)</code>
 This will create two buttons on a single line, instead of one button per line.
-
 Keep in mind that your message <b>MUST</b> contain some text other than just a button!
 """.format(dispatcher.bot.first_name)
 
@@ -368,7 +379,6 @@ __help__ = """
  - /slap: slap a user, or get slapped if not a reply.
  - /time <place>: gives the local time at the given place.
  - /info: get information about a user.
-
  - /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
 """
 
