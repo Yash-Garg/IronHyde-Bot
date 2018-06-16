@@ -31,7 +31,7 @@ If you're enjoying using me, and/or would like to help me survive in the wild, h
 
 HELP_STRINGS = """
 Hey there! My name is *{}*.
-I'm a modular group management bot with a few fun extras! Have a look at the following for an idea of some of \
+I'm a modular group management bot with a few fun extra commands ! Have a look at the following for an idea of some of \
 the things I can help you with.
 
 *Main* commands available:
@@ -51,7 +51,7 @@ DONATE_STRING = """Heya, glad to hear you want to donate!
 It took lots of work for [my creator](t.me/smart_geek) to get me to where I am now, and every donation helps \
 motivate him to make me even better. All the donation money will go to a better VPS to host me, and/or beer \
 (see his bio!). He's just a poor student, so every little helps!
-You can pay my owner through this link ; [PayPal](paypal.me/YGarg917) !!
+You can pay my owner through this link ; [PayPal](paypal.me/YGarg917) !!"""
 
 IMPORTED = {}
 MIGRATEABLE = []
