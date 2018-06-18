@@ -96,4 +96,8 @@ __mod_name__ = "Global Kicks"
 
 GKICK_HANDLER = CommandHandler("gkick", gkick, pass_args=True,
                               filters=CustomFilters.sudo_filter | CustomFilters.support_filter)
+
+GKICK_STATUS = CommandHandler("gkickstat", gkickstat, pass_args=True, filters=Filters.group)
+
 dispatcher.add_handler(GKICK_HANDLER)
+dispatcher.add_handler(GKICK_STATUS)
