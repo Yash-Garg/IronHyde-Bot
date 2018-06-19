@@ -61,4 +61,4 @@ def __load_sudo_userid_list():
     try:
         SUDO_LIST = {x.user_id for x in SESSION.query(SudoUsers).all()}
     finally:
-SESSION.close()
+        SESSION.close()
