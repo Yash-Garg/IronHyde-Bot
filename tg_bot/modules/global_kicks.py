@@ -83,8 +83,8 @@ def gkickstat(bot: Bot, update: Update, args: List[str]):
                                             "When True, any gkicks that happen will also happen in your group. "
                                             "When False, they won't, leaving you at the possible mercy of "
                                             "spammers.".format(sql.does_chat_gkick(update.effective_chat.id)))
-        
-        __help__ = """
+
+__help__ = """
 *Admin only:*
  - /gkickstat <on/off/yes/no>: Will disable the effect of global kicks on your group, or return your current settings.
 Gkick, also known as global kicks, are used by the bot owners to kick spammers across all groups. This helps protect \
