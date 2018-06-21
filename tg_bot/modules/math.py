@@ -11,15 +11,15 @@ BASE_URL = 'https://newton.now.sh'
 
 def newton(operation: str, message: Message, args: List[str]):
     if message.reply_to_message:
-        expression = message.reply_to_message.text
+        expression = message.reply_to_message.text()
     elif len(args) >= 1:
         expression = message.text.split(None, 1)[1]
     else:
-        message.reply_text("What am I supposed to do with this?!")
+        message.reply_text()("What am I supposed to do with this?!")
         return
 
     r = requests.get(f'{BASE_URL}/{operation}/{expression}')
-    res = r.json()
+    res = r.json
     message.reply_text({res["result"]})
 
 @run_async
