@@ -82,7 +82,9 @@ The following env variables are supported:
  - `BAN_STICKER`: Which sticker to use when banning people.
  - `ALLOW_EXCL`: Whether to allow using exclamation marks ! for commands as well as /.
  - `API_OPENWEATHER`: Your openweather map API key should be entered here to make the weather module work.
- 
+
+Get your OpenWeatherMap API key [here](https://openweathermap.org/api) !! 
+
 ### Python dependencies
 
 Install the necessary python dependencies by moving to the project directory and running:

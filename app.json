@@ -74,6 +74,10 @@
       "description": "Which sticker to use when banning people. Use https://telegram.dog/ShowJsonBot to get the file_id",
       "value": "CAADBQADVQADSRstDCPAJSulhCSYAg"
     }
+    "API_OPENWEATHER": {
+      "description": "Your open weather API key for weather module to run",
+      "value": ""
+    }
   },
   "addons": [
     {
