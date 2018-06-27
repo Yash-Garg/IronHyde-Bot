@@ -8,6 +8,16 @@ Can be found on telegram as [IronHyde](https://t.me/IronHyde_bot).
 
 Alternatively, [find me on telegram](https://t.me/smart_geek)!!
 
+## Show some  :blue_heart:
+
+[![GitHub forks](https://img.shields.io/github/forks/badges/shields.svg?style=social&label=Fork)](https://github.com/Yash-Garg/IronHyde-Bot)
+
+[![GitHub stars](https://img.shields.io/github/stars/badges/shields.svg?style=social&label=Stars)](https://github.com/Yash-Garg/IronHyde-Bot)
+
+[![GitHub watchers](https://img.shields.io/github/watchers/badges/shields.svg?style=social&label=Watch)](https://github.com/Yash-Garg/IronHyde-Bot)
+
+[![GitHub followers](https://img.shields.io/github/followers/espadrine.svg?style=social&label=Follow)](https://github.com/Yash-Garg)
+
 ## Starting the bot.
 
 Once you've setup your database and your configuration (see below) is complete, simply run:
