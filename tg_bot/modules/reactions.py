@@ -15,6 +15,11 @@ def react(bot: Bot, update: Update):
     else:
       message.reply_text(react)
     
+__help__ = """
+- Reply to a text with /react and the bot will send some reactions
+"""
+
+__mod_name__ = "Reactions"
 
 REACT_HANDLER = CommandHandler("react", react)
 
