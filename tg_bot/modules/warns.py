@@ -93,7 +93,6 @@ def warn(user: User, chat: Chat, reason: str, message: Message, warner: User = N
 
 
 @run_async
-@user_admin_no_reply
 @bot_admin
 @loggable
 def button(bot: Bot, update: Update) -> str:
