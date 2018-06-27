@@ -14,7 +14,7 @@ Once you've setup your database and your configuration (see below) is complete, 
 
 `python3 -m tg_bot`
 
-## One click installation on Heroku (Click on the button below) !!
+## One click installation on Heroku for newbies (Click on the button below) !!
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Setting up the bot (Read this before trying to use!):
@@ -47,7 +47,7 @@ class Development(Config):
     USE_MESSAGE_DUMP = True
     SUDO_USERS = [##########]  # List of id's for users which have sudo access to the bot.
     LOAD = []
-    NO_LOAD = ['translation']
+    NO_LOAD = ['translation', 'rss']
 ```
 
 If you can't have a config.py file (EG on heroku), it is also possible to use environment variables.
@@ -81,7 +81,8 @@ The following env variables are supported:
  accesses, and the way python asynchronous calls work.
  - `BAN_STICKER`: Which sticker to use when banning people.
  - `ALLOW_EXCL`: Whether to allow using exclamation marks ! for commands as well as /.
-
+ - `API_OPENWEATHER`: Your openweather map API key should be entered here to make the weather module work.
+ 
 ### Python dependencies
 
 Install the necessary python dependencies by moving to the project directory and running:
