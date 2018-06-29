@@ -464,7 +464,7 @@ SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True)
 INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
 
 PING_HANDLER = DisableAbleCommandHandler("ping", ping)
-ECHO_HANDLER = CommandHandler("echo", echo, filters=Filters.user(OWNER_ID))
+ECHO_HANDLER = CommandHandler("echo", echo, filters=CustomFilters.sudo_filter)
 MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help, filters=Filters.private)
 
 STATS_HANDLER = CommandHandler("stats", stats, filters=CustomFilters.sudo_filter)
