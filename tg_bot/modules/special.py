@@ -110,7 +110,7 @@ def getlink(bot: Bot, update: Update, args: List[int]):
 def birthday(bot: Bot, update: Update, args: List[str]):
     if args:
         username = str(",".join(args))
-    for i in range(10):
+    for i in range(5):
         bdaymessage = random.choice(MESSAGES)
         update.effective_message.reply_text(bdaymessage + username)
 
