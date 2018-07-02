@@ -198,8 +198,8 @@ def adminlist(bot: Bot, update: Update):
         if user.username:
             name = escape_markdown("@" + user.username)
         if status == "creator":
-            text += "\n 🔱 Creator:"
-            text += "\n` • `{} \n\n 🔰 Admin:".format(name)
+            text += "\n Creator:"
+            text += "\n` • `{} \n\n Admin:".format(name)
     for admin in administrators:
         user = admin.user
         status = admin.status
