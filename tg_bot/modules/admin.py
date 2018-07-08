@@ -33,7 +33,7 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_member = chat.get_member(user_id)
     if user_member.status == 'administrator' or user_member.status == 'creator':
-        message.reply_text("How am I meant to promote someone that's already an admin?")
+        message.reply_text("Am i supposed to give them a second star or something?")
         return ""
 
     if user_id == bot.id:
@@ -79,7 +79,7 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_member = chat.get_member(user_id)
     if user_member.status == 'creator':
-        message.reply_text("This person CREATED the chat, how would I demote them?")
+        message.reply_text("Demoting the CREATOR of the chat is the second funniest thing after you !")
         return ""
 
     if not user_member.status == 'administrator':
