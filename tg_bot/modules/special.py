@@ -13,10 +13,9 @@ from tg_bot.modules.helper_funcs.chat_status import is_user_ban_protected, bot_a
 import random
 import telegram
 import tg_bot.modules.sql.users_sql as sql
-from tg_bot import dispatcher, OWNER_ID, LOGGER
+from tg_bot import dispatcher, OWNER_ID, SUDO_USERS, LOGGER
 from tg_bot.modules.helper_funcs.filters import CustomFilters
 from tg_bot.modules.disable import DisableAbleCommandHandler
-
 USERS_GROUP = 4
 
 MESSAGES = (
@@ -106,6 +105,19 @@ def getlink(bot: Bot, update: Update, args: List[int]):
         update.effective_message.reply_text("I don't have access to the invite link!")
 
 @run_async
+def sudolist(bot: Bot, update: Update):
+    text = "My sudo users are:"
+    for user_id in SUDO_USERS:
+        user = bot.get_chat(user_id)
+        name = "[{}](tg://user?id={})".format(user.first_name + (user.last_name or ""), user.id)
+        if user.username:
+            name = escape_markdown("@" + user.username)
+        text += "\n - {}".format(name)
+
+    update.effective_message.reply_text(text, parse_mode=ParseMode.MARKDOWN)
+
+
+@run_async
 @user_admin
 def birthday(bot: Bot, update: Update, args: List[str]):
     if args:
@@ -114,18 +126,33 @@ def birthday(bot: Bot, update: Update, args: List[str]):
         bdaymessage = random.choice(MESSAGES)
         update.effective_message.reply_text(bdaymessage + username)
 
+    __help__ = """
+*Owner only:*
+- /getlink *chatid*: Get the invite link for a specific chat.
+
+*Sudo only:*
+- /quickscope *chatid* *userid*: Ban user from chat.
+- /quickunban *chatid* *userid*: Unban user from chat.
+- /snipe *chatid* *string*: Make me send a message to a specific chat.
+- /sudolist Guess what it does 
+
+*Admin only:*
+- /birthday *@username*: Spam user with birthday wishes.
+"""
+
+
 __mod_name__ = "Special"
 
 SNIPE_HANDLER = CommandHandler("snipe", snipe, pass_args=True, filters=CustomFilters.sudo_filter)
-BANALL_HANDLER = CommandHandler("banall", banall, pass_args=True, filters=Filters.user(OWNER_ID))
 QUICKSCOPE_HANDLER = CommandHandler("quickscope", quickscope, pass_args=True, filters=CustomFilters.sudo_filter)
 QUICKUNBAN_HANDLER = CommandHandler("quickunban", quickunban, pass_args=True, filters=CustomFilters.sudo_filter)
 GETLINK_HANDLER = CommandHandler("getlink", getlink, pass_args=True, filters=Filters.user(OWNER_ID))
+SLIST_HANDLER = CommandHandler("sudolist", sudolist, filters=CustomFilters.sudo_filter)
 BIRTHDAY_HANDLER = CommandHandler("birthday", birthday, pass_args=True, filters=Filters.group)
 
 dispatcher.add_handler(SNIPE_HANDLER)
-dispatcher.add_handler(BANALL_HANDLER)
 dispatcher.add_handler(QUICKSCOPE_HANDLER)
 dispatcher.add_handler(QUICKUNBAN_HANDLER)
 dispatcher.add_handler(GETLINK_HANDLER)
+dispatcher.add_handler(SLIST_HANDLER)
 dispatcher.add_handler(BIRTHDAY_HANDLER)
