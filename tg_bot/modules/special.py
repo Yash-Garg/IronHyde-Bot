@@ -126,7 +126,7 @@ def birthday(bot: Bot, update: Update, args: List[str]):
         bdaymessage = random.choice(MESSAGES)
         update.effective_message.reply_text(bdaymessage + username)
 
-    __help__ = """
+__help__ = """
 *Owner only:*
 - /getlink *chatid*: Get the invite link for a specific chat.
 
