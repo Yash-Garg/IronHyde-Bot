@@ -131,6 +131,7 @@ def slist(bot: Bot, update: Update):
 def birthday(bot: Bot, update: Update, args: List[str]):
     if args:
         username = str(",".join(args))
+    bot.sendChatAction(update.effective_chat.id, "typing") # Bot typing before send messages
     for i in range(5):
         bdaymessage = random.choice(MESSAGES)
         update.effective_message.reply_text(bdaymessage + username)
@@ -157,7 +158,7 @@ QUICKSCOPE_HANDLER = CommandHandler("quickscope", quickscope, pass_args=True, fi
 QUICKUNBAN_HANDLER = CommandHandler("quickunban", quickunban, pass_args=True, filters=CustomFilters.sudo_filter)
 GETLINK_HANDLER = CommandHandler("getlink", getlink, pass_args=True, filters=Filters.user(OWNER_ID))
 SLIST_HANDLER = CommandHandler("slist", slist, filters=CustomFilters.sudo_filter)
-BIRTHDAY_HANDLER = CommandHandler("birthday", birthday, pass_args=True, filters=Filters.group)
+BIRTHDAY_HANDLER = DisableAbleCommandHandler("birthday", birthday, pass_args=True, filters=Filters.group)
 
 dispatcher.add_handler(SNIPE_HANDLER)
 dispatcher.add_handler(QUICKSCOPE_HANDLER)
