@@ -87,7 +87,8 @@ def new_member(bot: Bot, update: Update):
             continue
         if is_safemoded(chat.id).safemode_status:
             try:
-                bot.restrict_chat_member(chat.id, mems.id, can_send_messages=True, can_send_media_messages=False, can_send_other_messages=False, can_add_web_page_previews=False, until_date=(int(time.time() + 4 * 60 * 60)))
+
+                bot.restrict_chat_member(chat.id, mems.id, can_send_messages=True, can_send_media_messages=False, can_send_other_messages=False, can_add_web_page_previews=False, until_date=(int(time.time() + 24 * 60 * 60)))
             except BadRequest as excp:
                 LOGGER.warning(update)
                 LOGGER.exception("ERROR muting user %s in chat %s (%s) due to %s", mems.id, chat.title, chat.id, excp.message)
