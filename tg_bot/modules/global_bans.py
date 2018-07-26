@@ -131,7 +131,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
 
     send_to_list(bot, SUDO_USERS + SUPPORT_USERS,
                    "{} has been successfully gbanned!".format(mention_html(user_chat.id, user_chat.first_name)),
-                   html=True)  
+                   html=True)
     message.reply_text("Person has been \"Dealt with\".")
 
 @run_async
@@ -192,8 +192,8 @@ def ungban(bot: Bot, update: Update, args: List[str]):
 
     sql.ungban_user(user_id)
 
-    send_to_list(bot, SUDO_USERS + SUPPORT_USERS, 
-                  "{} has been successfully un-gbanned!".format(mention_html(user_chat.id, 
+    send_to_list(bot, SUDO_USERS + SUPPORT_USERS,
+                  "{} has been successfully un-gbanned!".format(mention_html(user_chat.id,
                                                                          user_chat.first_name)),
                  html=True)
 

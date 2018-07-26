@@ -64,7 +64,7 @@ def gmute(bot: Bot, update: Update, args: List[str]):
 
         return
 
-    message.reply_text("*Gets duct tape ready* 😉")
+    message.reply_text("*Shut the fuck up thanks* 🤐")
 
     muter = update.effective_user  # type: Optional[User]
     send_to_list(bot, SUDO_USERS + SUPPORT_USERS,
@@ -123,7 +123,7 @@ def gmute(bot: Bot, update: Update, args: List[str]):
         except TelegramError:
             pass
 
-    send_to_list(bot, SUDO_USERS + SUPPORT_USERS, 
+    send_to_list(bot, SUDO_USERS + SUPPORT_USERS,
                   "{} has been successfully gmuted!".format(mention_html(user_chat.id, user_chat.first_name)),
                 html=True)
 
@@ -211,7 +211,7 @@ def ungmute(bot: Bot, update: Update, args: List[str]):
                                                                          user_chat.first_name)),
                   html=True)
 
-    message.reply_text("Person has been un-gmuted.")
+    message.reply_text("Fine 😏 , I will let them speak ! ")
 
 
 @run_async
