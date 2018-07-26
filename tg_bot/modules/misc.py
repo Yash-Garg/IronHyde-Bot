@@ -363,25 +363,7 @@ def getlink(bot: Bot, update: Update, args: List[int]):
         update.effective_message.reply_text("Successfully retrieved the invite link in group {}. \nInvite link : {}".format(titlechat, invitelink))
     else:
         update.effective_message.reply_text("I don't have access to the invite link!")
-    
-@run_async
-def leavechat(bot: Bot, update: Update, args: List[int]):
-    if args:
-        chat_id = int(args[0])
-    else:
-        update.effective_message.reply_text("Anda sepertinya tidak mengacu pada obrolan")
-    try:
-        chat = bot.getChat(chat_id)
-        titlechat = bot.get_chat(chat_id).title
-        bot.sendMessage(chat_id, "Selamat tinggal semua 😁")
-        bot.leaveChat(chat_id)
-        update.effective_message.reply_text("Saya telah keluar dari grup {}".format(titlechat))
 
-    except BadRequest as excp:
-        if excp.message == "Chat not found":
-            update.effective_message.reply_text("Sepertinya saya sudah keluar atau di tendang di grup tersebut")
-        else:
-            return
 @bot_admin
 @can_restrict
 @user_admin
