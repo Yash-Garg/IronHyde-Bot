@@ -85,15 +85,23 @@ def stretch(bot: Bot, update: Update):
 def vapor(bot: Bot, update: Update, args: List[str]):
     message = update.effective_message
 
-    if message.reply_to_message:
+    if not message.reply_to_message:
+        if not args:
+            message.reply_text("I need a message to convert to vaporwave text.")
+        else:
+            noreply = True
+            data = message.text.split(None, 1)[1]
+    elif message.reply_to_message:
+        noreply = False
         data = message.reply_to_message.text
-    elif len(args) >= 1:
-        data = message.text.split(None, 1)[1]
     else:
         data = ''
 
     reply_text = str(data).translate(WIDE_MAP)
-    message.reply_to_message.reply_text(reply_text)
+    if noreply:
+        message.reply_text(reply_text)
+    else:
+        message.reply_to_message.reply_text(reply_text)
 
 @run_async
 def spongemocktext(bot: Bot, update: Update):
