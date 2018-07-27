@@ -109,6 +109,10 @@ def spongemocktext(bot: Bot, update: Update):
 __help__ = """
 - Reply to a text with /🅱️ or /😂 or /👏
 - You can also use the text version of these : /bmoji or /copypasta or /clapmoji
+- /vapor : Converts the text into monospace
+- /stretch : Stretches the text
+- /owo : Adds random owo reactions
+- /mock : Converts text into alternate capital and small letters
 """
 
 __mod_name__ = "Memes"
