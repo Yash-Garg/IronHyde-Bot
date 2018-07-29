@@ -21,8 +21,7 @@ PM_START_TEXT = """
 Hi {}, my name is {}! 
 
 I'm a group manager bot maintained by [this wonderful person](tg://user?id={}). I'm built in python3, using the \
-python-telegram-bot library, and am fully opensource - you can find what makes me tick \
-[here](https://github.com/Yash-Garg/IronHyde-Bot)!
+python-telegram-bot library.
 
 You can find the list of available commands with /help.
 
