@@ -1,4 +1,4 @@
-# tgbot
+# IHbot
 A modular telegram Python bot running on python3 with an sqlalchemy database.
 
 Originally a simple group management bot with multiple admin features, it has evolved, becoming extremely modular and 
@@ -12,7 +12,7 @@ Alternatively, [find me on telegram](https://t.me/smart_geek)!!
 
 Once you've setup your database and your configuration (see below) is complete, simply run:
 
-`python3 -m tg_bot`
+`python3.6 -m IHbot`
 
 ## One click installation on Heroku for newbies (Click on the button below) !!
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
@@ -35,7 +35,7 @@ defaults set in the sample_config, hence making it easier to upgrade.
 
 An example `config.py` file could be:
 ```
-from tg_bot.sample_config import Config
+from IHbot.sample_config import Config
 
 
 class Development(Config):
@@ -89,7 +89,7 @@ Get your OpenWeatherMap API key [here](https://openweathermap.org/api) !!
 
 Install the necessary python dependencies by moving to the project directory and running:
 
-`pip3 install -r requirements.txt`.
+`pip3.6 install -r requirements.txt`.
 
 This will install all necessary python packages.
 
