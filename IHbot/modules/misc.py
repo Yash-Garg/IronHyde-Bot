@@ -19,6 +19,9 @@ from IHbot.modules.helper_funcs.filters import CustomFilters
 from IHbot.modules.helper_funcs.chat_status import bot_admin, user_admin, can_restrict
 from IHbot.modules.sql.safemode_sql import set_safemode, is_safemoded
 
+from geopy.geocoders import Nominatim
+from telegram import Location
+
 RUN_STRINGS = (
     "Where do you think you're going?",
     "Huh? what? did they get away?",
@@ -440,6 +443,24 @@ def stats(bot: Bot, update: Update):
     update.effective_message.reply_text("Current stats:\n" + "\n".join([mod.__stats__() for mod in STATS]))
 
 
+def gps(bot: Bot, update: Update, args: List[str]):
+    message = update.effective_message
+    if len(args) == 0:
+        update.effective_message.reply_text("That was a funny joke, but no really, put in a location")
+    try:
+        geolocator = Nominatim(user_agent="SkittBot")
+        location = " ".join(args)
+        geoloc = geolocator.geocode(location)  
+        chat_id = update.effective_chat.id
+        lon = geoloc.longitude
+        lat = geoloc.latitude
+        the_loc = Location(lon, lat) 
+        gm = "https://www.google.com/maps/search/{},{}".format(lat,lon)
+        bot.send_location(chat_id, location=the_loc)
+        update.message.reply_text("Open with: [Google Maps]({})".format(gm), parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
+    except AttributeError:
+        update.message.reply_text("I can't find that")
+
 # /ip is for private use
 __help__ = """
  - /id: get the current group id. If used by replying to a message, gets that user's id.
@@ -469,6 +490,7 @@ MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help, filters=Filters.
 
 STATS_HANDLER = CommandHandler("stats", stats, filters=CustomFilters.sudo_filter)
 GDPR_HANDLER = CommandHandler("gdpr", gdpr, filters=Filters.private)
+GPS_HANDLER = DisableAbleCommandHandler("gps", gps, pass_args=True)
 
 dispatcher.add_handler(ID_HANDLER)
 dispatcher.add_handler(PING_HANDLER)
@@ -482,3 +504,4 @@ dispatcher.add_handler(MD_HELP_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
 dispatcher.add_handler(SAFEMODE_HANDLER)
 dispatcher.add_handler(GDPR_HANDLER)
+dispatcher.add_handler(GPS_HANDLER)

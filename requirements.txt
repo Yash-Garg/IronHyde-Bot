@@ -9,4 +9,4 @@ pynewtonmath
 pyowm
 #memes vvv
 spongemock
-
+geopy
