@@ -507,6 +507,8 @@ __help__ = """
  - /info: get information about a user.
  - /gdpr: deletes your information from the bot's database. Private chats only.
  - /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
+ - /stickerid: get's the ID of the sticker you replied to
+ - /getsticker: get's the sticker as a png file 
 """
 
 __mod_name__ = "Misc"
