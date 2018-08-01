@@ -273,7 +273,7 @@ def banme(bot: Bot, update: Update):
         update.effective_message.reply_text("I wish I could... but you're an admin.")
         return
 
-    res = update.effective_chat.kick_member(user_id)  
+    res = update.effective_chat.kick_member(user_id)
     if res:
         update.effective_message.reply_text("No problem, banned.")
         log = "<b>{}:</b>" \
@@ -282,10 +282,10 @@ def banme(bot: Bot, update: Update):
               "\n<b>ID:</b> <code>{}</code>".format(html.escape(chat.title),
                                                     mention_html(user.id, user.first_name), user_id)
         return log
-    
+
     else:
         update.effective_message.reply_text("Huh? I can't :/")
-        
+
 @run_async
 @bot_admin
 @can_restrict
@@ -471,6 +471,7 @@ def runban(bot: Bot, update: Update, args: List[str]):
 
 __help__ = """
  - /kickme: kicks the user who issued the command
+ - /banme: bans the user who issued the command.
 *Admin only:*
  - /ban <userhandle>: bans a user. (via handle, or reply)
  - /tban <userhandle> x(m/h/d): bans a user for x time. (via handle, or reply). m = minutes, h = hours, d = days.
