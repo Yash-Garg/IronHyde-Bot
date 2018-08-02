@@ -117,17 +117,24 @@ def birthday(bot: Bot, update: Update, args: List[str]):
 __help__ = """
 *Owner only:*
 - /getlink *chatid*: Get the invite link for a specific chat.
+- /banall: Ban all members from a chat
+- /leavechat *chatid* : leave a chat
 
 *Sudo only:*
 - /quickscope *chatid* *userid*: Ban user from chat.
 - /quickunban *chatid* *userid*: Unban user from chat.
 - /snipe *chatid* *string*: Make me send a message to a specific chat.
-- /slist Gives a list of support and sudo users
+- /slist: Gives a list of support and sudo users
+- /rban *chatid* *userid*: remotely ban a user from a chat
+- /runban *chatid* *userid*: remotely unban a user from a chat
+- /stats: check bot's stats
+- /chatlist: get chatlist 
+- /gbanlist: get gbanned users list
+- /gmutelist: get gmuted users list
 
 *Admin only:*
 - /birthday *@username*: Spam user with birthday wishes.
 """
-
 
 __mod_name__ = "Special"
 
