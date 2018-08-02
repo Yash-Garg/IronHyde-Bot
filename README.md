@@ -154,7 +154,7 @@ All that is needed is that your .py file be in the modules folder.
 
 To add commands, make sure to import the dispatcher via
 
-`from tg_bot import dispatcher`.
+`from IHbot import dispatcher`.
 
 You can then add commands using the usual
 
