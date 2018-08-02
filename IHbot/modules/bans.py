@@ -479,21 +479,27 @@ def sban(bot: Bot, update: Update, args: List[str]) -> str:
     message = update.effective_message  # type: Optional[Message]
     
     update.effective_message.delete()
-     user_id, reason = extract_user_and_text(message, args)
-     if not user_id:
+
+    user_id, reason = extract_user_and_text(message, args)
+
+    if not user_id:
         return ""
-     try:
+
+    try:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
             return ""
         else:
             raise
-     if is_user_ban_protected(chat, user_id, member):
+
+    if is_user_ban_protected(chat, user_id, member):
         return ""
-     if user_id == bot.id:
+
+    if user_id == bot.id:
         return ""
-     log = "<b>{}:</b>" \
+
+    log = "<b>{}:</b>" \
           "\n# SILENTBAN" \
           "\n<b>• Admin:</b> {}" \
           "\n<b>• User:</b> {}" \
@@ -501,10 +507,12 @@ def sban(bot: Bot, update: Update, args: List[str]) -> str:
                                                   mention_html(member.user.id, member.user.first_name), user_id)
     if reason:
         log += "\n<b>• Reason:</b> {}".format(reason)
-     try:
+
+    try:
         chat.kick_member(user_id)
         return log
-     except BadRequest as excp:
+
+    except BadRequest as excp:
         if excp.message == "Reply message not found":
             return log
         else:
