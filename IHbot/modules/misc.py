@@ -498,6 +498,15 @@ def getsticker(bot: Bot, update: Update):
                                             msg.from_user.id) + ", Please reply to sticker message to get sticker image",
                                             parse_mode=ParseMode.MARKDOWN)
 
+@run_async
+def shrug(bot: Bot, update: Update):
+    default_msg = "¯\_(ツ)_/¯"
+    message = update.effective_message
+    if message.reply_to_message:
+        message.reply_to_message.reply_text(default_msg)
+    else:
+        message.reply_text(default_msg)
+
 # /ip is for private use
 __help__ = """
  - /id: get the current group id. If used by replying to a message, gets that user's id.
@@ -507,8 +516,9 @@ __help__ = """
  - /info: get information about a user.
  - /gdpr: deletes your information from the bot's database. Private chats only.
  - /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
- - /stickerid: get's the ID of the sticker you replied to
- - /getsticker: get's the sticker as a png file 
+ - /stickerid: get's the ID of the sticker you replied to.
+ - /getsticker: get's the sticker as a png file.
+ - /shrug: try and check it out yourself.
 """
 
 __mod_name__ = "Misc"
@@ -534,6 +544,8 @@ GPS_HANDLER = DisableAbleCommandHandler("gps", gps, pass_args=True)
 STICKERID_HANDLER = DisableAbleCommandHandler("stickerid", stickerid)
 GETSTICKER_HANDLER = DisableAbleCommandHandler("getsticker", getsticker)
 
+SHRUG_HANDLER = DisableAbleCommandHandler("shrug", shrug)
+
 dispatcher.add_handler(ID_HANDLER)
 dispatcher.add_handler(PING_HANDLER)
 dispatcher.add_handler(IP_HANDLER)
@@ -549,3 +561,4 @@ dispatcher.add_handler(GDPR_HANDLER)
 dispatcher.add_handler(GPS_HANDLER)
 dispatcher.add_handler(STICKERID_HANDLER)
 dispatcher.add_handler(GETSTICKER_HANDLER)
+dispatcher.add_handler(SHRUG_HANDLER)
