@@ -153,12 +153,10 @@ HIT = (
 GMAPS_LOC = "https://maps.googleapis.com/maps/api/geocode/json"
 GMAPS_TIME = "https://maps.googleapis.com/maps/api/timezone/json"
 
-
 @run_async
 def runs(bot: Bot, update: Update):
     bot.sendChatAction(update.effective_chat.id, "typing") # Bot typing before send messages
     update.effective_message.reply_text(random.choice(RUN_STRINGS))
-
 
 @run_async
 def slap(bot: Bot, update: Update, args: List[str]):
@@ -198,7 +196,6 @@ def slap(bot: Bot, update: Update, args: List[str]):
 
     reply_text(repl, parse_mode=ParseMode.MARKDOWN)
 
-
 @run_async
 def get_bot_ip(bot: Bot, update: Update):
     """ Sends the bot's IP address, so as to be able to ssh in if necessary.
@@ -206,7 +203,6 @@ def get_bot_ip(bot: Bot, update: Update):
     """
     res = requests.get("http://ipinfo.io/ip")
     update.message.reply_text(res.text)
-
 
 @run_async
 def get_id(bot: Bot, update: Update, args: List[str]):
@@ -236,7 +232,6 @@ def get_id(bot: Bot, update: Update, args: List[str]):
         else:
             update.effective_message.reply_text("This group's id is `{}`.".format(chat.id),
                                                 parse_mode=ParseMode.MARKDOWN)
-
 
 @run_async
 def info(bot: Bot, update: Update, args: List[str]):
@@ -293,7 +288,6 @@ def info(bot: Bot, update: Update, args: List[str]):
 
     update.effective_message.reply_text(text, parse_mode=ParseMode.HTML)
 
-
 @run_async
 def get_time(bot: Bot, update: Update, args: List[str]):
     location = " ".join(args)
@@ -335,7 +329,6 @@ def get_time(bot: Bot, update: Update, args: List[str]):
                 timestamp = json.loads(res.text)['rawOffset']
                 time_there = datetime.fromtimestamp(timenow + timestamp + offset).strftime("%H:%M:%S on %A %d %B")
                 update.message.reply_text("It's {} in {}".format(time_there, location))
-
 
 @run_async
 def echo(bot: Bot, update: Update):
@@ -390,8 +383,6 @@ def safe_mode(bot: Bot, update: Update, args: List[str]):
     else:
         message.reply_text("I only recognize the arguments `{}`, `{}`, `{}` or `{}`".format("Yes", "No", "On", "Off"), parse_mode=ParseMode.MARKDOWN)
 
-
-
 @run_async
 def gdpr(bot: Bot, update: Update):
     update.effective_message.reply_text("Deleting identifiable data...")
@@ -406,7 +397,6 @@ def gdpr(bot: Bot, update: Update):
                                         "\"for the performance of a task carried out in the public interest\", as is "
                                         "the case for the aforementioned pieces of data.",
                                         parse_mode=ParseMode.MARKDOWN)
-
 
 MARKDOWN_HELP = """
 Markdown is a very powerful formatting tool supported by telegram. {} has some enhancements, to make sure that \
@@ -428,7 +418,6 @@ This will create two buttons on a single line, instead of one button per line.
 Keep in mind that your message <b>MUST</b> contain some text other than just a button!
 """.format(dispatcher.bot.first_name)
 
-
 @run_async
 def markdown_help(bot: Bot, update: Update):
     update.effective_message.reply_text(MARKDOWN_HELP, parse_mode=ParseMode.HTML)
@@ -437,11 +426,9 @@ def markdown_help(bot: Bot, update: Update):
                                         "[URL](example.com) [button](buttonurl:github.com) "
                                         "[button2](buttonurl://google.com:same)")
 
-
 @run_async
 def stats(bot: Bot, update: Update):
     update.effective_message.reply_text("Current stats:\n" + "\n".join([mod.__stats__() for mod in STATS]))
-
 
 def gps(bot: Bot, update: Update, args: List[str]):
     message = update.effective_message
@@ -462,43 +449,6 @@ def gps(bot: Bot, update: Update, args: List[str]):
         update.message.reply_text("I can't find that")
 
 @run_async
-def stickerid(bot: Bot, update: Update):
-    msg = update.effective_message
-    if msg.reply_to_message and msg.reply_to_message.sticker:
-        update.effective_message.reply_text("Hello " +
-                                            "[{}](tg://user?id={})".format(msg.from_user.first_name, msg.from_user.id)
-                                            + ", The sticker id you are replying is :\n```" + 
-                                            escape_markdown(msg.reply_to_message.sticker.file_id) + "```",
-                                            parse_mode=ParseMode.MARKDOWN)
-    else:
-        update.effective_message.reply_text("Hello " + "[{}](tg://user?id={})".format(msg.from_user.first_name,
-                                            msg.from_user.id) + ", Please reply to sticker message to get id sticker",
-                                            parse_mode=ParseMode.MARKDOWN)
-@run_async
-def getsticker(bot: Bot, update: Update):
-    msg = update.effective_message
-    chat_id = update.effective_chat.id
-    if msg.reply_to_message and msg.reply_to_message.sticker:
-        bot.sendChatAction(chat_id, "typing")
-        update.effective_message.reply_text("Hello " + "[{}](tg://user?id={})".format(msg.from_user.first_name,
-                                            msg.from_user.id) + ", Please check the file you requested below."
-                                            "\nPlease use this feature wisely!",
-                                            parse_mode=ParseMode.MARKDOWN)
-        bot.sendChatAction(chat_id, "upload_document")
-        file_id = msg.reply_to_message.sticker.file_id
-        newFile = bot.get_file(file_id)
-        newFile.download('sticker.png')
-        bot.sendDocument(chat_id, document=open('sticker.png', 'rb'))
-        bot.sendChatAction(chat_id, "upload_photo")
-        bot.send_photo(chat_id, photo=open('sticker.png', 'rb'))
-        
-    else:
-        bot.sendChatAction(chat_id, "typing")
-        update.effective_message.reply_text("Hello " + "[{}](tg://user?id={})".format(msg.from_user.first_name,
-                                            msg.from_user.id) + ", Please reply to sticker message to get sticker image",
-                                            parse_mode=ParseMode.MARKDOWN)
-
-@run_async
 def shrug(bot: Bot, update: Update):
     default_msg = "¯\_(ツ)_/¯"
     message = update.effective_message
@@ -516,8 +466,6 @@ __help__ = """
  - /info: get information about a user.
  - /gdpr: deletes your information from the bot's database. Private chats only.
  - /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
- - /stickerid: get's the ID of the sticker you replied to.
- - /getsticker: get's the sticker as a png file.
  - /shrug: try and check it out yourself.
 """
 
@@ -541,9 +489,6 @@ STATS_HANDLER = CommandHandler("stats", stats, filters=CustomFilters.sudo_filter
 GDPR_HANDLER = CommandHandler("gdpr", gdpr, filters=Filters.private)
 GPS_HANDLER = DisableAbleCommandHandler("gps", gps, pass_args=True)
 
-STICKERID_HANDLER = DisableAbleCommandHandler("stickerid", stickerid)
-GETSTICKER_HANDLER = DisableAbleCommandHandler("getsticker", getsticker)
-
 SHRUG_HANDLER = DisableAbleCommandHandler("shrug", shrug)
 
 dispatcher.add_handler(ID_HANDLER)
@@ -559,6 +504,4 @@ dispatcher.add_handler(STATS_HANDLER)
 dispatcher.add_handler(SAFEMODE_HANDLER)
 dispatcher.add_handler(GDPR_HANDLER)
 dispatcher.add_handler(GPS_HANDLER)
-dispatcher.add_handler(STICKERID_HANDLER)
-dispatcher.add_handler(GETSTICKER_HANDLER)
 dispatcher.add_handler(SHRUG_HANDLER)
