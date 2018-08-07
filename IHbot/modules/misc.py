@@ -290,6 +290,10 @@ def info(bot: Bot, update: Update, args: List[str]):
 
 @run_async
 def get_time(bot: Bot, update: Update, args: List[str]):
+    if len(args) == 0:
+        update.effective_message.reply_text("Write a location to check the time.")
+        return
+
     location = " ".join(args)
     if location.lower() == bot.first_name.lower():
         update.effective_message.reply_text("Its always banhammer time for me!")
