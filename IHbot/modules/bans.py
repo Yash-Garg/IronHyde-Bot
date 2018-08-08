@@ -6,7 +6,7 @@ from telegram.error import BadRequest
 from telegram.ext import run_async, CommandHandler, Filters
 from telegram.utils.helpers import mention_html
 
-from IHbot import dispatcher, BAN_STICKER, LOGGER
+from IHbot import dispatcher, BAN_STICKER, LOGGER, OWNER_ID
 from IHbot.modules.disable import DisableAbleCommandHandler
 from IHbot.modules.helper_funcs.chat_status import bot_admin, user_admin, is_user_ban_protected, can_restrict, \
     is_user_admin, is_user_in_chat, is_bot_admin
@@ -251,9 +251,12 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
 @can_restrict
 def kickme(bot: Bot, update: Update):
     user_id = update.effective_message.from_user.id
-    if is_user_admin(update.effective_chat, user_id):
-        update.effective_message.reply_text("I wish I could... but you're an admin.")
-        return
+    if user_id == OWNER_ID:
+        update.effective_message.reply_text("Oof, I can't kick my master.")
+        return 
+    elif is_user_admin(update.effective_chat, user_id):
+          update.effective_message.reply_text("I wish I could... but you're an admin.")
+          return
 
     res = update.effective_chat.unban_member(user_id)  # unban on current user = kick
     if res:
