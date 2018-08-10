@@ -22,7 +22,7 @@ def afk(bot: Bot, update: Update):
         reason = ""
 
     sql.set_afk(update.effective_user.id, reason)
-    update.effective_message.reply_text("{} fugged off!".format(update.effective_user.first_name))
+    update.effective_message.reply_text("{} is now AFK!".format(update.effective_user.first_name))
 
 
 @run_async
