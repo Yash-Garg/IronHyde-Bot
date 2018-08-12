@@ -242,7 +242,10 @@ def banme(bot: Bot, update: Update):
     user_id = update.effective_message.from_user.id
     chat = update.effective_chat
     user = update.effective_user
-    if is_user_admin(update.effective_chat, user_id):
+    if user_id == OWNER_ID:
+        update.effective_message.reply_text("Oof, I can't ban my master.")
+        return
+    elif is_user_admin(update.effective_chat, user_id):
         update.effective_message.reply_text("I wish I could... but you're an admin.")
         return
 
