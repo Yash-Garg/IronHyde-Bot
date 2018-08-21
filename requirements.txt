@@ -7,6 +7,6 @@ psycopg2-binary
 feedparser
 pynewtonmath
 pyowm
-#memes vvv
 spongemock
 geopy
+PyLyrics
