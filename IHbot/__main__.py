@@ -26,6 +26,8 @@ python-telegram-bot library.
 
 You can find the list of available commands with /help.
 
+[Click here to add me in your groups](https://telegram.me/IronHyde_Bot?startgroup=add)
+
 If you're enjoying using me, and/or would like to help me survive in the wild, hit /donate to help fund/upgrade my VPS!
 """
 
