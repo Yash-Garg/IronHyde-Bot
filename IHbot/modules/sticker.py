@@ -1,3 +1,4 @@
+import os
 from telegram import Message, Chat, Update, Bot
 from telegram import ParseMode
 from telegram.ext import CommandHandler, run_async
@@ -35,7 +36,8 @@ def getsticker(bot: Bot, update: Update):
         newFile = bot.get_file(file_id)
         newFile.download('sticker.png')
         bot.sendDocument(chat_id, document=open('sticker.png', 'rb'))
-
+        os.remove("sticker.png")
+        
     else:
         bot.sendChatAction(chat_id, "typing")
         update.effective_message.reply_text("Hello " + "[{}](tg://user?id={})".format(msg.from_user.first_name,
