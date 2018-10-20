@@ -14,19 +14,18 @@ from IHbot import dispatcher, SUDO_USERS, LOGGER
 from IHbot.modules.disable import DisableAbleCommandHandler
 from IHbot.modules.helper_funcs.chat_status import can_delete, is_user_admin, user_not_admin, user_admin, \
     bot_can_delete, is_bot_admin
-from IHbot.modules.helper_funcs.filters import CustomFilters
 from IHbot.modules.log_channel import loggable
 from IHbot.modules.sql import users_sql
 
 LOCK_TYPES = {'sticker': Filters.sticker,
               'audio': Filters.audio,
               'voice': Filters.voice,
-              'document': Filters.document,
+              'document': Filters.document & ~Filters.animation,
               'video': Filters.video,
               'videonote': Filters.video_note,
               'contact': Filters.contact,
               'photo': Filters.photo,
-              'gif': Filters.document & CustomFilters.mime_type("video/mp4"),
+              'gif': Filters.animation,
               'url': Filters.entity(MessageEntity.URL) | Filters.caption_entity(MessageEntity.URL),
               'bots': Filters.status_update.new_chat_members,
               'forward': Filters.forwarded,
@@ -34,7 +33,7 @@ LOCK_TYPES = {'sticker': Filters.sticker,
               'location': Filters.location,
               }
 
-GIF = Filters.document & CustomFilters.mime_type("video/mp4")
+GIF = Filters.animation
 OTHER = Filters.game | Filters.sticker | GIF
 MEDIA = Filters.audio | Filters.document | Filters.video | Filters.video_note | Filters.voice | Filters.photo
 MESSAGES = Filters.text | Filters.contact | Filters.location | Filters.venue | Filters.command | MEDIA | OTHER
