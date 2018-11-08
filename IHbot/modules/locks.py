@@ -17,19 +17,19 @@ from IHbot.modules.helper_funcs.chat_status import can_delete, is_user_admin, us
 from IHbot.modules.log_channel import loggable
 from IHbot.modules.sql import users_sql
 
-LOCK_TYPES = {'sticker': Filters.sticker,
+LOCK_TYPES = {'stickers': Filters.sticker,
               'audio': Filters.audio,
               'voice': Filters.voice,
-              'document': Filters.document & CustomFilters.mime_type("application/vnd.android.package-archive") & ~Filters.animation,
-              'video': Filters.video,
-              'videonote': Filters.video_note,
-              'contact': Filters.contact,
-              'photo': Filters.photo,
-              'gif': Filters.animation,
-              'url': Filters.entity(MessageEntity.URL) | Filters.caption_entity(MessageEntity.URL),
+              'documents': Filters.document & CustomFilters.mime_type("application/vnd.android.package-archive") & ~Filters.animation,
+              'videos': Filters.video,
+              'videonotes': Filters.video_note,
+              'contacts': Filters.contact,
+              'photos': Filters.photo,
+              'gifs': Filters.animation,
+              'urls': Filters.entity(MessageEntity.URL) | Filters.caption_entity(MessageEntity.URL),
               'bots': Filters.status_update.new_chat_members,
-              'forward': Filters.forwarded,
-              'game': Filters.game,
+              'forwards': Filters.forwarded,
+              'games': Filters.game,
               'location': Filters.location,
               }
 
