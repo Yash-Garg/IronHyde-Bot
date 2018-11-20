@@ -7,7 +7,7 @@ from telegram import MessageEntity
 from telegram.ext import Filters, MessageHandler, run_async
 
 from IHbot import dispatcher
-from IHbot.modules.disable import DisableAbleCommandHandler
+from IHbot.modules.disable import DisableAbleCommandHandler, DisableAbleRegexHandler
 
 WIDE_MAP = dict((i, i + 0xFEE0) for i in range(0x21, 0x7F))
 WIDE_MAP[0x20] = 0x3000
@@ -114,6 +114,13 @@ def spongemocktext(bot: Bot, update: Update):
     reply_text = spongemock.mock(data)
     message.reply_text(reply_text)
 
+@run_async
+def me_too(bot: Bot, update: Update):
+    message = update.effective_message
+    if random.randint(0, 100) > 60:
+        reply = random.choice(["Me too thanks", "Haha yes, me too", "Same lol", "Me irl"])
+        message.reply_text(reply)
+
 __help__ = """
 - Reply to a text with /🅱️ or /😂 or /👏
 - You can also use the text version of these : /bmoji or /copypasta or /clapmoji
@@ -135,6 +142,7 @@ OWO_HANDLER = DisableAbleCommandHandler("owo", owo)
 STRETCH_HANDLER = DisableAbleCommandHandler("stretch", stretch)
 VAPOR_HANDLER = DisableAbleCommandHandler("vapor", vapor, pass_args=True)
 MOCK_HANDLER = DisableAbleCommandHandler("mock", spongemocktext, admin_ok=True)
+ME_TOO_THANKS_HANDLER = DisableAbleRegexHandler(r"(?i)me too", me_too, friendly="me_too")
 
 dispatcher.add_handler(COPYPASTA_HANDLER)
 dispatcher.add_handler(COPYPASTA_ALIAS_HANDLER)
@@ -146,3 +154,4 @@ dispatcher.add_handler(OWO_HANDLER)
 dispatcher.add_handler(STRETCH_HANDLER)
 dispatcher.add_handler(VAPOR_HANDLER)
 dispatcher.add_handler(MOCK_HANDLER)
+dispatcher.add_handler(ME_TOO_THANKS_HANDLER)
