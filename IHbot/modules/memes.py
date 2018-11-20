@@ -109,10 +109,10 @@ def spongemocktext(bot: Bot, update: Update):
     if message.reply_to_message:
         data = message.reply_to_message.text
     else:
-        data = ''
+        data = str('Haha yes, I know how to mock text.')
 
     reply_text = spongemock.mock(data)
-    message.reply_to_message.reply_text(reply_text)
+    message.reply_text(reply_text)
 
 __help__ = """
 - Reply to a text with /🅱️ or /😂 or /👏
