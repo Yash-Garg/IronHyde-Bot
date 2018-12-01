@@ -79,7 +79,7 @@ def makepack_internal(msg, user, png_sticker, emoji, bot):
     packname = f"a{hash[:20]}_by_{bot.username}"
     try:
         success = bot.create_new_sticker_set(user.id, packname, name + "'s kang pack",
-                                             png_sticker=png_sticker,,
+                                             png_sticker=png_sticker,
                                              emojis=emoji)
     except TelegramError as e:
         print(e)
