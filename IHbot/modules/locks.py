@@ -16,6 +16,7 @@ from IHbot.modules.helper_funcs.chat_status import can_delete, is_user_admin, us
     bot_can_delete, is_bot_admin
 from IHbot.modules.log_channel import loggable
 from IHbot.modules.sql import users_sql
+from IHbot.modules.helper_funcs.filters import CustomFilters
 
 LOCK_TYPES = {'stickers': Filters.sticker,
               'audio': Filters.audio,
